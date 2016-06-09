@@ -33,6 +33,4 @@ angular
 <input ng-ip-address />
 ```
 
-[bower-image]: https://img.shields.io/bower/v/ng-focus-if.svg
-[npm-image]: http://img.shields.io/npm/v/ng-focus-if.svg
-[plnkr-url]: http://plnkr.co/
+[plnkr-url]: http://plnkr.co/edit/7n2muGs78kXqIx7MHB7E?p=preview
