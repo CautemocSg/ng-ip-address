@@ -1,31 +1,31 @@
 {
-  "name": "ng-ip-address",
-  "homepage": "https://github.com/CautemocSg/ng-ip-address",
-  "authors": [
+	"name": "ng-ip-address",
+	"homepage": "https://github.com/CautemocSg/ng-ip-address",
+	"authors": [
 		{
 			"name": "Scott Gullen",
 			"email": "cautemoc.social@gmail.com",
 			"homepage": "https://www.linkedin.com/in/scottgullen"
 		}
-  ],
-  "description": "AngularJS directive that will validate an IP address and impose relevant character and structure limits",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/CautemocSg/ng-ip-address.git"
-  },
-  "main": "ngIpAddress.js",
-  "keywords": [
-    "angular",
-    "angularjs",
-    "directive",
-    "ip-address",
+	],
+	"description": "AngularJS directive that will validate an IP address and impose relevant character and structure limits",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/CautemocSg/ng-ip-address.git"
+	},
+	"main": "ngIpAddress.js",
+	"keywords": [
+		"angular",
+		"angularjs",
+		"directive",
+		"ip-address",
 		"validation"
-  ],
-  "license": "MIT",
-  "ignore": [
-    "node_modules",
-    ".idea",
-    "npm-debug.log"
-  ],
-  "version": "1.0.1"
+	],
+	"license": "MIT",
+	"ignore": [
+		"node_modules",
+		".idea",
+		"npm-debug.log"
+	],
+	"version": "1.0.1"
 }
