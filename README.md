@@ -18,7 +18,7 @@ Validation Rules:
 1. Each segment must be between 0 and 255
 2. Must be 4 segments
 
-View a live demo on [Plnkr][plnkr-url].
+View a live demo on [Plnkr][plnkr-url], [CodePen][codepen-url], or [jsFiddle][jsfiddle-url].
 
 It is available through NPM:
 
@@ -53,3 +53,5 @@ Valid entries will have `ng-valid-ip-address` class.
 Entries breaking one of the validation rules will cause the input to become invalid and gain the `ng-invalid-ip-address` class.
 
 [plnkr-url]: http://plnkr.co/edit/7n2muGs78kXqIx7MHB7E?p=preview
+[codepen-url]: http://codepen.io/ScottGullen/pen/Wxrywm
+[jsfiddle-url]: https://jsfiddle.net/CautemocSg/sytovbet/12/
