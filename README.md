@@ -1,16 +1,18 @@
 # ng-ip-address
 
+### Description
+
 An attribute directive that will limit an input to appropriate IP address characters and structure, as well as validate
 the value.
 
-**Currently only supports IPv4 Addresses**
+*Currently only supports IPv4 Addresses*
 
 Limit Rules:
 
-1. Limit to 4 segments (xxx.xxx.xxx.xxx)
+1. Limited to 4 segments (xxx.xxx.xxx.xxx)
 2. Each segment limited to 3 characters
-3. Segments cannot have 0's followed by numbers (ex: 2.02 will be turned into 2.2)
-4. Segments cannot be empty
+3. Segments have leading 0 removed (ex: 2.02 will be turned into 2.2)
+4. Segments cannot be empty and duplicate periods will be removed
 5. Characters limited to numbers and period
 
 Validation Rules:
@@ -19,6 +21,9 @@ Validation Rules:
 2. Must be 4 segments
 
 View a live demo on [Plnkr][plnkr-url], [CodePen][codepen-url], or [jsFiddle][jsfiddle-url].
+
+
+### Install
 
 It is available through NPM:
 
