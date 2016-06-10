@@ -59,4 +59,4 @@ Entries breaking one of the validation rules will cause the input to become inva
 
 [plnkr-url]: http://plnkr.co/edit/7n2muGs78kXqIx7MHB7E?p=preview
 [codepen-url]: http://codepen.io/ScottGullen/pen/Wxrywm
-[jsfiddle-url]: https://jsfiddle.net/CautemocSg/sytovbet/12/
+[jsfiddle-url]: https://jsfiddle.net/CautemocSg/dcdrgnnh/
