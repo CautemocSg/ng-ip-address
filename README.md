@@ -43,7 +43,7 @@ Entries breaking one of the validation rules will cause the input to become inva
 
 ###### Additional Options
 
-Port options are accessed through `ng-ip-config` property.
+Port options are accessed through `ng-ip-config` property. Options default to false and requirePort overrides allowPort.
 
 ```html
 <input ng-model="model" ng-ip-address ng-ip-config="ipConfigObj" />
@@ -51,8 +51,8 @@ Port options are accessed through `ng-ip-config` property.
 
 ```js
 scope.ipConfigObject = {
-    allowPort: bool, (defaults to false)
-    requirePort: bool (defaults to false)
+    allowPort: bool,
+    requirePort: bool
 };
 ```
 
@@ -62,11 +62,11 @@ scope.ipConfigObject = {
 
 * Four segments with optional port (ex: 172.16.254.1:24213)
 * Each segment limited to 3 numbers
-..* port is limited to 5
+    * port is limited to 5
 * Leading zeroes are removed (ex: 2.02 will be turned into 2.2)
 * Duplicate periods are removed
 * Characters limited to numbers and period
-..* colon is added with port enabled
+    * colon is added with port enabled
 
 *with allowPort set to true*
 
