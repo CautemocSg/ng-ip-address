@@ -9,7 +9,7 @@
 			restrict: 'A',
 			require: '?ngModel',
 			scope: {
-				configuration: '=?ngIpConfig'
+				config: '=?ngIpConfig'
 			},
 			link: function(scope, element, attrs, ngModelCtrl) {
 				if (!ngModelCtrl) {
@@ -42,22 +42,17 @@
 					var allowPort, requirePort;
 
 					// If configuration is undefined...
-					if (angular.isUndefined(scope.configuration)) {
+					if (angular.isUndefined(scope.config)) {
 						// Set additional options to false
 						allowPort = false;
 						requirePort = false;
 					} else {
-						// Otherwise, check if either requirePort and allowPort exist and are boolean...
-						if (typeof(scope.configuration.requirePort) === 'boolean' || typeof(scope.configuration.allowPort) === 'boolean') {
-							// Allow port if either port option is set to true
-							allowPort = (scope.configuration.allowPort || scope.configuration.requirePort);
-							// Set require port
-							requirePort = typeof(scope.configuration.requirePort) === 'boolean' ? scope.configuration.requirePort : false;
-						} else {
-							// Either don't exist or incorrectly set, default options to false
-							allowPort = false;
-							requirePort = false;
-						}
+						// Otherwise, track if configuration option to require port is set
+						var requirePortIsBool = typeof(scope.config.requirePort) === 'boolean';
+						// If port is either optional or required, allow port to be entered
+						allowPort = ((requirePortIsBool && scope.config.requirePort) || ((typeof(scope.config.allowPort) === 'boolean') && scope.config.allowPort)) ? true : false;
+						// Require port if it is set
+						requirePort = (requirePortIsBool && scope.config.requirePort) ? true : false;
 					}
 
 					// If the user configured options to allow ports...
@@ -106,7 +101,7 @@
 								// Set the ip segment
 								cleanValArray[i] = segmentArray[0];
 								// Check if there was a port
-								if (segmentArray[1] !== undefined) {
+								if (angular.isDefined(segmentArray[1])) {
 									// Set the port
 									var port = segmentArray[1];
 									// Clean leading zeroes
@@ -151,7 +146,7 @@
 					cleanVal = cleanValArray.join('.');
 
 					// Attach the port if it exists
-					if (port !== undefined) {
+					if (angular.isDefined(port)) {
 						cleanVal = cleanVal + ':' + port;
 					}
 
