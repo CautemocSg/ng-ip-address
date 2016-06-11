@@ -51,8 +51,13 @@ Port options are accessed through `ng-ip-config` property. Options default to fa
 
 ```js
 scope.ipConfigObject = {
-    allowPort: bool,
-    requirePort: bool
+    allowPort: true
+};
+```
+or
+```js
+scope.ipConfigObject = {
+    requirePort: true
 };
 ```
 
