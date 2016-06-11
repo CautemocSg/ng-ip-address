@@ -67,16 +67,14 @@ scope.ipConfigObject = {
 
 * Four segments with optional port (ex: 172.16.254.1:24213)
 * Each segment limited to 3 numbers
-    * port is limited to 5
 * Leading zeroes are removed (ex: 2.02 will be turned into 2.2)
 * Duplicate periods are removed
 * Characters limited to numbers and period
-    * colon is added with port enabled
 
 *with allowPort set to true*
 
-* All four IP segments must be filled in before port is available
-* Only one port can be typed
+* Limited to one colon in the fourth IP segment
+* Port is limited to 5 numbers
 
 ###### Validates User Input
 
@@ -85,7 +83,7 @@ scope.ipConfigObject = {
 
 *with allowPort set to true*
 
-* If port exists, it must not be empty
+* If port exists, it must be between 1 and 65535
 
 *with requirePort set to true*
 
