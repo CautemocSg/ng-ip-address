@@ -1,10 +1,14 @@
 {
 	"name": "ng-ip-address",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "AngularJS directive that will validate an IP address and impose relevant character and structure limits",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/CautemocSg/ng-ip-address.git"
+	},
+	"bugs": {
+		"url": "https://github.com/CautemocSg/ng-ip-address/issues",
+		"email": "cautemoc.social@gmail.com"
 	},
 	"main": "index.js",
 	"author": "Scott Gullen",
@@ -12,7 +16,9 @@
 		"angular",
 		"angularjs",
 		"directive",
-		"ip-address",
+		"ip address",
+		"form",
+		"input",
 		"validation"
 	],
 	"license": "MIT",

@@ -18,14 +18,15 @@
 		"angular",
 		"angularjs",
 		"directive",
-		"ip-address",
+		"ip address",
+		"form",
+		"input",
 		"validation"
 	],
 	"license": "MIT",
 	"ignore": [
 		"node_modules",
-		".idea",
-		"npm-debug.log"
+		".idea"
 	],
-	"version": "1.1.0"
+	"version": "1.1.1"
 }
