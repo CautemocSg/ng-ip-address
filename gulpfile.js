@@ -5,7 +5,7 @@ var gulp = require('gulp'),
   rename = require('gulp-rename');
 
 gulp.task('default', function() {
-  return gulp.src('ngIpAddress.js')
+  return gulp.src('dev/*.js')
     .pipe(ngAnnotate())
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))

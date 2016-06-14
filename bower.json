@@ -13,7 +13,7 @@
 		"type": "git",
 		"url": "git://github.com/CautemocSg/ng-ip-address.git"
 	},
-	"main": "ngIpAddress.js",
+	"main": "./dev/ngIpAddress.js",
 	"keywords": [
 		"angular",
 		"angularjs",
@@ -28,5 +28,5 @@
 		"node_modules",
 		".idea"
 	],
-	"version": "1.1.1"
+	"version": "1.1.2"
 }
