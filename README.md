@@ -25,7 +25,7 @@ bower install ng-ip-address --save
 
 ### Usage
 
-Include `ngIpAddress.min.js` in your build or directly with a `<script>` tag and require the module in your module definition:
+Include `ngIpAddress.min.js` or `ngIpAddress.vanilla.min.js` in your build or directly with a `<script>` tag and require the module in your module definition:
 
 ```js
 angular  
@@ -43,20 +43,22 @@ Entries breaking one of the validation rules will cause the input to become inva
 
 ###### Additional Options
 
+*Vanilla version does not include additional options so is a smaller file and may perform faster*
+
 Port options are accessed through `ng-ip-config` property. Options default to false and requirePort overrides allowPort.
 
 ```html
-<input ng-model="model" ng-ip-address ng-ip-config="ipConfigObj" />
+<input ng-model="model" ng-ip-address ng-ip-config="ipConfigObject" />
 ```
 
 ```js
-scope.ipConfigObject = {
+$scope.ipConfigObject = {
     allowPort: true
 };
 ```
 or
 ```js
-scope.ipConfigObject = {
+$scope.ipConfigObject = {
     requirePort: true
 };
 ```
