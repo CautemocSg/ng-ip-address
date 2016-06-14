@@ -5,7 +5,7 @@
 		{
 			"name": "Scott Gullen",
 			"email": "cautemoc.social@gmail.com",
-			"homepage": "https://www.linkedin.com/in/scottgullen"
+			"homepage": "https://github.com/CautemocSg"
 		}
 	],
 	"description": "AngularJS directive that will validate an IP address and impose relevant character and structure limits",
@@ -13,7 +13,7 @@
 		"type": "git",
 		"url": "git://github.com/CautemocSg/ng-ip-address.git"
 	},
-	"main": "./dev/ngIpAddress.js",
+	"main": "ngIpAddress.min.js",
 	"keywords": [
 		"angular",
 		"angularjs",
@@ -28,5 +28,5 @@
 		"node_modules",
 		".idea"
 	],
-	"version": "1.1.2"
+	"version": "1.1.3"
 }
