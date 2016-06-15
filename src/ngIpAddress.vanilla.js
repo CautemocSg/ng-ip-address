@@ -13,96 +13,102 @@
 					return;
 				}
 
-				// Set up regex to match leading periods or anything other than numbers and periods
-				var regexDisallowed = new RegExp('^\\.|[^0-9\\.]+', 'g');
-				// Set up regex to match leading zero
+				// Initialize regex...
+				// Match leading zero
 				var regexLeadingZero = new RegExp('^0', 'g');
-				// Set up regex to match duplicate period
+				// Match leading period
+				var regexLeadingPeriod = new RegExp('^\\.', 'g');
+				// Match duplicate period
 				var regexDupePeriods = new RegExp('\\.\\.+', 'g');
 
-				ngModelCtrl.$parsers.push(function(val) {
+				// Attach key evaluator to the element keypress event
+				element.bind('keypress', evalKeyPress);
 
-					// If val is empty...
-					if (val.length < 1) {
+				// Attach input evaluator to the input model parsers
+				ngModelCtrl.$parsers.push(evalInput);
+
+				function evalKeyPress(event) {
+					// If the key character code is not allowed...
+					if (event.which < 46 || event.which == 47 || event.which > 57) {
+						// Stop key press from propagating
+						event.preventDefault();
+					}
+				}
+
+				function evalInput(val) {
+					// If val is falsy (undefined, empty string, etc)...
+					if (!val) {
 						// Set the field validity to true since it should be the responsibility of 'required' to stop blank entries
 						ngModelCtrl.$setValidity('ipAddress', true);
-						// Return the value
+						// Return value
 						return val;
 					}
 
 					// Initialize validation result tracker
 					var validationResult = true;
 
-					// Clean any disallowed input
-					var cleanVal = val.replace(regexDisallowed, '');
+					// Remove leading period
+					val = val.replace(regexLeadingPeriod, '');
+
+					// Remove any duplicate periods
+					val = val.replace(regexDupePeriods, '.');
 
 					// Break the IP address into segments
-					var cleanValArray = cleanVal.split('.');
+					var valArray = val.split('.');
 					// Eval length to be used later
-					var cleanValArrayLength = cleanValArray.length;
+					var valArrayLength = valArray.length;
 
-					// Check if there are less than 4 segments...
-					if (cleanValArrayLength < 4) {
+					// If there are less than four IP segments...
+					if (valArrayLength < 4) {
 						// Set validity tracker to false
 						validationResult = false;
 					}
-					// Otherwise, check if there are more than 4 segments...
-					else if (cleanValArrayLength > 4) {
+					// Otherwise, if there are more than four IP segments...
+					else if (valArrayLength > 4) {
 						// Enforce 4 segment limit
-						cleanValArray.length = 4;
-						// Update length
-						cleanValArrayLength = 4;
+						valArray.length = 4;
+						// Update array length
+						valArrayLength = 4;
 					}
 
 					// For each segment...
-					for (var i = 0; i < cleanValArrayLength; i++) {
-
-						// Check if the segment length is longer than 1...
-						if (cleanValArray[i].length > 1) {
-							// Clean leading zeroes and any number after the third
-							cleanValArray[i] = cleanValArray[i].replace(regexLeadingZero, '').substring(0, 3);
+					for (var i = 0; i < valArrayLength; i++) {
+						// Eval array value to be used later so the array isn't getting accessed so often
+						var arrayVal = valArray[i];
+						// If the ip segment value is longer than one digit...
+						if (arrayVal.length > 1) {
+							// Delete leading zeroes and any number after the third
+							arrayVal = arrayVal.replace(regexLeadingZero, '').substring(0, 3);
 							// If the value is greater than 255...
-							if (cleanValArray[i] > 255) {
+							if (arrayVal > 255) {
 								// Set validity tracker to false
 								validationResult = false;
 							}
 						}
-						// Otherwise, check if the length is 0...
-						else if (cleanValArray[i].length < 1) {
-							// Set validity  tracker to false
+						// Otherwise, check if the value is empty...
+						else if (!arrayVal) {
+							// Set validity tracker to false
 							validationResult = false;
 						}
-
+						// Set the final value back to the segment
+						valArray[i] = arrayVal;
 					}
 
 					// Reassemble the segments
-					cleanVal = cleanValArray.join('.');
-
-					// Cleanup any scrap periods
-					cleanVal = cleanVal.replace(regexDupePeriods, '.');
+					val = valArray.join('.');
 
 					// Set validity of field (will be displayed as class 'ng-valid-ip-address' or 'ng-invalid-ip-address')
 					ngModelCtrl.$setValidity('ipAddress', validationResult);
 
-					// If the original value differs from the clean value...
-					if (val !== cleanVal) {
-						// Replace the input value with the cleaned value in the view
-						ngModelCtrl.$setViewValue(cleanVal);
-						ngModelCtrl.$render();
-					}
+					// Replace the input value with the cleaned value in the view
+					ngModelCtrl.$setViewValue(val);
+					ngModelCtrl.$render();
 
-					// Return the cleaned value
-					return cleanVal;
-				});
-
-				// Prevent spaces
-				element.bind('keypress', function(event) {
-					if (event.keyCode === 32) {
-						event.preventDefault();
-					}
-				});
+					// Return value
+					return val;
+				}
 
 			}
 		};
 	}
-})();
+}());

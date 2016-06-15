@@ -16,161 +16,174 @@
 					return;
 				}
 
-				// Initialize regex var that will match disallowed characters
-				var regexDisallowed;
-				// Set up regex to match leading zero
+				// Initialize configuration
+				var allowPort = false;
+				var requirePort = false;
+
+				// Initialize regex...
+				// Match leading zero
 				var regexLeadingZero = new RegExp('^0', 'g');
-				// Set up regex to match duplicate period
+				// Match leading period
+				var regexLeadingPeriod = new RegExp('^\\.', 'g');
+				// Match duplicate period
 				var regexDupePeriods = new RegExp('\\.\\.+', 'g');
-				// Set up regex to match colons
+				// Match colons
 				var regexColon = new RegExp(':', 'g');
-				// Set up regex to match leading colons
+				// Match leading colon
 				var regexLeadingColon = new RegExp('^:', 'g');
 
-				ngModelCtrl.$parsers.push(function(val) {
+				// Shallow watch the members of the config object and evaluate changes
+				scope.$watchCollection('config', evalConfiguration);
 
-					// If val is empty...
-					if (val.length < 1) {
-						// Set the field validity to true since it should be the responsibility of 'required' to stop blank entries
-						ngModelCtrl.$setValidity('ipAddress', true);
-						// Return the value
-						return val;
-					}
+				// Attach key evaluator to the element keypress event
+				element.bind('keypress', evalKeyPress);
 
-					var allowPort, requirePort;
+				// Attach input evaluator to the input model parsers
+				ngModelCtrl.$parsers.push(evalInput);
 
-					// If configuration is undefined...
-					if (angular.isUndefined(scope.config)) {
-						// Set additional options to false
+				function evalConfiguration(newConfig) {
+					// If configuration is truthy...
+					if (newConfig) {
+						// Require port if it is set
+						requirePort = typeof(newConfig.requirePort) === 'boolean' && newConfig.requirePort;
+						// If port is either required or optional, allow port
+						allowPort = requirePort || ((typeof(newConfig.allowPort) === 'boolean') && newConfig.allowPort);
+					} else {
+						// Otherwise, reset the options to false
 						allowPort = false;
 						requirePort = false;
-					} else {
-						// Otherwise, track if configuration option to require port is set
-						var requirePortIsBool = typeof(scope.config.requirePort) === 'boolean';
-						// If port is either optional or required, allow port to be entered
-						allowPort = (requirePortIsBool && scope.config.requirePort) || ((typeof(scope.config.allowPort) === 'boolean') && scope.config.allowPort);
-						// Require port if it is set
-						requirePort = requirePortIsBool && scope.config.requirePort;
 					}
-
-					// If the user configured options to allow ports...
+					// If port is allowed...
 					if (allowPort) {
-						// Set disallowed regex to match leading periods or anything other than numbers, periods, and colons
-						regexDisallowed = new RegExp('^\\.|[^0-9\\.:]+', 'g');
+						// Trigger parser to check validity
+						ngModelCtrl.$parsers[0](ngModelCtrl.$viewValue);
 					} else {
-						// Otherwise, set disallowed regex to match leading periods or anything other than numbers and periods
-						regexDisallowed = new RegExp('^\\.|[^0-9\\.]+', 'g');
+						// Otherwise, delete colons
+						ngModelCtrl.$setViewValue(ngModelCtrl.$viewValue.replace(regexColon, ''));
+					}
+				}
+
+				function evalKeyPress(event) {
+					// If the key character code is not allowed...
+					if (event.which < 46 || event.which == 47 || event.which > 58 || (event.which == 58 && !allowPort)) {
+						// Stop key press from propagating
+						event.preventDefault();
+					}
+				}
+
+				function evalInput(val) {
+					// If val is falsy (undefined, empty string, etc)...
+					if (!val) {
+						// Set the field validity to true since it should be the responsibility of 'required' to stop blank entries
+						ngModelCtrl.$setValidity('ipAddress', true);
+						// Return value
+						return val;
 					}
 
 					// Initialize validation result tracker
 					var validationResult = true;
 
-					// Clean any disallowed input
-					var cleanVal = val.replace(regexDisallowed, '');
+					// Initialize port holder
+					var port = null;
+
+					// Remove leading period
+					val = val.replace(regexLeadingPeriod, '');
+
+					// Remove any duplicate periods
+					val = val.replace(regexDupePeriods, '.');
 
 					// Break the IP address into segments
-					var cleanValArray = cleanVal.split('.');
+					var valArray = val.split('.');
 					// Eval length to be used later
-					var cleanValArrayLength = cleanValArray.length;
+					var valArrayLength = valArray.length;
 
-					// Check if there are less than 4 segments...
-					if (cleanValArrayLength < 4) {
+					// If there are less than four IP segments...
+					if (valArrayLength < 4) {
 						// Set validity tracker to false
 						validationResult = false;
 					}
-					// Otherwise, check if there are more than 4 segments...
-					else if (cleanValArrayLength > 4) {
+					// Otherwise, if there are more than four IP segments...
+					else if (valArrayLength > 4) {
 						// Enforce 4 segment limit
-						cleanValArray.length = 4;
-						// Update length
-						cleanValArrayLength = 4;
+						valArray.length = 4;
+						// Update array length
+						valArrayLength = 4;
 					}
 
 					// For each segment...
-					for (var i = 0; i < cleanValArrayLength; i++) {
-
+					for (var i = 0; i < valArrayLength; i++) {
+						// Eval array value to be used later so the array isn't getting accessed so often
+						var arrayVal = valArray[i];
 						// If the user configured options to allow ports...
 						if (allowPort) {
-							// Check for colon in section other than the fourth
+							// If the current section is not the fourth...
 							if (i < 3) {
-								// Delete colon
-								cleanValArray[i] = cleanValArray[i].replace(regexColon, '');
+								// Delete any colons
+								arrayVal = arrayVal.replace(regexColon, '');
 							} else {
-								// Delete colon if it is leading
-								cleanValArray[i] = cleanValArray[i].replace(regexLeadingColon, '');
+								// Delete colon if it is leading (ex. 1.1.1.:)
+								arrayVal = arrayVal.replace(regexLeadingColon, '');
 								// If there is a port...
-								if (cleanValArray[i].indexOf(':') !== -1) {
+								if (arrayVal.indexOf(':') != -1) {
 									// Break the segment into ip segment and ports
-									var segmentArray = cleanValArray[i].split(':');
+									var segmentArray = arrayVal.split(':');
 									// Set the ip segment
-									cleanValArray[i] = segmentArray[0];
-									// Set the port, clean leading zeroes and remove any number after the fifth
-									var port = segmentArray[1].replace(regexLeadingZero, '').substring(0, 5);
+									arrayVal = segmentArray[0];
+									// Set the port, delete leading zeroes and remove any number after the fifth
+									port = segmentArray[1].replace(regexLeadingZero, '').substring(0, 5);
 									// If the port is empty or the value is greater than max
-									if (port.length < 1 || port > 65535) {
-										// Set validity  tracker to false
+									if (!port || port > 65535) {
+										// Set validity tracker to false
 										validationResult = false;
 									}
 								}
 								// Otherwise, if port is required...
 								else if (requirePort) {
-									// Set validity  tracker to false
+									// Set validity tracker to false
 									validationResult = false;
 								}
 							}
 						}
-
-						// Check if the ip segment length is longer than 1...
-						if (cleanValArray[i].length > 1) {
-							// Clean leading zeroes and any number after the third
-							cleanValArray[i] = cleanValArray[i].replace(regexLeadingZero, '').substring(0, 3);
+						// If the ip segment value is longer than one digit...
+						if (arrayVal.length > 1) {
+							// Delete leading zeroes and any number after the third
+							arrayVal = arrayVal.replace(regexLeadingZero, '').substring(0, 3);
 							// If the value is greater than 255...
-							if (cleanValArray[i] > 255) {
-								// Set validity  tracker to false
+							if (arrayVal > 255) {
+								// Set validity tracker to false
 								validationResult = false;
 							}
 						}
-						// Otherwise, check if the length is 0...
-						else if (cleanValArray[i].length < 1) {
+						// Otherwise, check if the value is empty...
+						else if (!arrayVal) {
 							// Set validity tracker to false
 							validationResult = false;
 						}
-
+						// Set the final value back to the segment
+						valArray[i] = arrayVal;
 					}
 
 					// Reassemble the segments
-					cleanVal = cleanValArray.join('.');
+					val = valArray.join('.');
 
-					// Attach the port if it exists
-					if (angular.isDefined(port)) {
-						cleanVal = cleanVal + ':' + port;
+					// If the port is not null...
+					if (port !== null) {
+						// Attach it to the final value
+						val += ':' + port
 					}
-
-					// Cleanup any scrap periods
-					cleanVal = cleanVal.replace(regexDupePeriods, '.');
 
 					// Set validity of field (will be displayed as class 'ng-valid-ip-address' or 'ng-invalid-ip-address')
 					ngModelCtrl.$setValidity('ipAddress', validationResult);
 
-					// If the original value differs from the clean value...
-					if (val !== cleanVal) {
-						// Replace the input value with the cleaned value in the view
-						ngModelCtrl.$setViewValue(cleanVal);
-						ngModelCtrl.$render();
-					}
+					// Replace the input value with the cleaned value in the view
+					ngModelCtrl.$setViewValue(val);
+					ngModelCtrl.$render();
 
-					// Return the cleaned value
-					return cleanVal;
-				});
-
-				// Prevent spaces
-				element.bind('keypress', function(event) {
-					if (event.keyCode === 32) {
-						event.preventDefault();
-					}
-				});
+					// Return value
+					return val;
+				}
 
 			}
 		};
 	}
-})();
+}());
