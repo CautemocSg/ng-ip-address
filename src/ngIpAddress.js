@@ -64,8 +64,11 @@
 				}
 
 				function evalKeyPress(event) {
-					// If the key character code is not allowed...
-					if (event.which < 46 || event.which == 47 || event.which > 58 || (event.which == 58 && !allowPort)) {
+					// If the character code is not allowed...
+					if ((event.which < 46 && event.which !== 0 && event.which != 8 && event.which != 13)
+						|| event.which == 47
+						|| event.which > 58
+						|| (event.which == 58 && !allowPort)) {
 						// Stop key press from propagating
 						event.preventDefault();
 					}

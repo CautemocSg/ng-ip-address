@@ -28,8 +28,10 @@
 				ngModelCtrl.$parsers.push(evalInput);
 
 				function evalKeyPress(event) {
-					// If the key character code is not allowed...
-					if (event.which < 46 || event.which == 47 || event.which > 57) {
+					// If the character code is not allowed...
+					if ((event.which < 46 && event.which !== 0 && event.which != 8 && event.which != 13)
+						|| event.which == 47
+						|| event.which > 57) {
 						// Stop key press from propagating
 						event.preventDefault();
 					}
