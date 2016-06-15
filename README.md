@@ -1,5 +1,6 @@
 [![Bower version][bower-image]][github-url]
 [![NPM version][npm-image]][npm-url]
+[![Code Climate][code-climate-image]][code-climate-url]
 [![devDependency Status][david-image]][david-url]
 [![Downloads][downloads-image]][npm-url]
 [![GitHub stars][stars-image]][github-url]
