@@ -1,2 +1,5 @@
 languages:
   JavaScript: true
+engines:
+  duplication:
+    enabled: false
