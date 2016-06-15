@@ -53,12 +53,12 @@
 						allowPort = false;
 						requirePort = false;
 					}
-					// If port is allowed...
-					if (allowPort) {
+					// If port is allowed or the value is falsey...
+					if (allowPort || !ngModelCtrl.$viewValue) {
 						// Trigger parser to check validity
 						ngModelCtrl.$parsers[0](ngModelCtrl.$viewValue);
 					} else {
-						// Otherwise, delete colons
+						// Otherwise, remove colons and replace view value
 						ngModelCtrl.$setViewValue(ngModelCtrl.$viewValue.replace(regexColon, ''));
 					}
 				}
@@ -75,7 +75,7 @@
 				}
 
 				function evalInput(val) {
-					// If val is falsy (undefined, empty string, etc)...
+					// If val is falsey (undefined, empty string, etc)...
 					if (!val) {
 						// Set the field validity to true since it should be the responsibility of 'required' to stop blank entries
 						ngModelCtrl.$setValidity('ipAddress', true);
