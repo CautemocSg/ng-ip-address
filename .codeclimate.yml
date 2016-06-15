@@ -1,8 +1,8 @@
 languages:
-	JavaScript: true
+  JavaScript: true
 engines:
   duplication:
     enabled: false
 ratings:
-	paths:
-		- "**/*.js"
+  paths:
+    - "**/*.js"
