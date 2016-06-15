@@ -1,3 +1,9 @@
+[![Bower version][bower-image]][github-url]
+[![NPM version][npm-image]][npm-url]
+[![devDependency Status][david-image]][david-url]
+[![Downloads][downloads-image]][npm-url]
+[![GitHub stars][stars-image]][github-url]
+
 # ng-ip-address
 
 ### Description
@@ -96,6 +102,17 @@ $scope.ipConfigObject = {
 ###### Version 1.2.0
 
 * Support for IPv6
+
+[bower-image]: https://img.shields.io/bower/v/ng-ip-address.svg
+[stars-image]: https://img.shields.io/github/stars/CautemocSg/ng-ip-address.svg?style=social
+[github-url]: https://github.com/CautemocSg/ng-ip-address/stargazers
+[npm-image]: http://img.shields.io/npm/v/ng-ip-address.svg
+[downloads-image]: http://img.shields.io/npm/dm/ng-ip-address.svg
+[npm-url]: https://npmjs.org/package/ng-ip-address
+[david-image]: https://david-dm.org/CautemocSg/ng-ip-address/dev-status.svg
+[david-url]: https://david-dm.org/CautemocSg/ng-ip-address#info=devDependencies
+[code-climate-image]: https://codeclimate.com/github/CautemocSg/ng-ip-address/badges/gpa.svg
+[code-climate-url]: https://codeclimate.com/github/CautemocSg/ng-ip-address
 
 [plnkr-url]: http://plnkr.co/edit/7n2muGs78kXqIx7MHB7E?p=preview
 [codepen-url]: http://codepen.io/ScottGullen/pen/Wxrywm
