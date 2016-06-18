@@ -116,5 +116,5 @@ $scope.ipConfigObject = {
 [code-climate-url]: https://codeclimate.com/github/CautemocSg/ng-ip-address
 
 [plnkr-url]: http://plnkr.co/edit/7n2muGs78kXqIx7MHB7E?p=preview
-[codepen-url]: http://codepen.io/ScottGullen/pen/Wxrywm
+[codepen-url]: http://codepen.io/CautemocSg/pen/Wxrywm
 [jsfiddle-url]: https://jsfiddle.net/CautemocSg/dcdrgnnh/
