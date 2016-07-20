@@ -9,12 +9,35 @@
 
 ### Description
 
-An attribute directive that will limit an input to appropriate IP address characters and structure, as well as validate
-the value.
+An attribute directive that will limit an input to appropriate IP 
+address characters and structure, as well as validate the value.
 
 *Currently only supports IPv4 Addresses*
 
 View a live demo on [Plnkr][plnkr-url], [CodePen][codepen-url], or [jsFiddle][jsfiddle-url].
+
+#### Versions
+
+Vanilla does not include the additional configuration options, is a 
+smaller file and has lower compatibility requirements.
+
+#### Compatibility
+
+###### AngularJS
+
+| Vanilla | Full |
+| --- | --- |
+| 1.0+ | 1.4+ |
+
+*AngularJS compatibility of full ngIpAddress is limited by `$watchCollection()` method.*
+
+###### Browsers
+
+| Chrome | Firefox | Internet Explorer | Opera | Safari |
+| --- | --- | --- | --- | --- |
+| 1.0+ | 1.0+ | 9+ | 8.0+ | Yes |
+
+*Browser compatibility is limited by `setSelectionRange()` method.*
 
 ### Install
 
@@ -32,7 +55,8 @@ bower install ng-ip-address --save
 
 ### Usage
 
-Include `ngIpAddress.min.js` or `ngIpAddress.vanilla.min.js` in your build or directly with a `<script>` tag and require the module in your module definition:
+Include `ngIpAddress.min.js` or `ngIpAddress.vanilla.min.js` in your 
+build or directly with a `<script>` tag and require the module in your module definition:
 
 ```js
 angular  
@@ -43,16 +67,18 @@ angular
 ```
 
 ```html
-<input ng-model="model" ng-ip-address />
+<input type="text" ng-model="model" ng-ip-address />
 ```
 
-Entries breaking one of the validation rules will cause the input to become invalid and gain the `ng-invalid-ip-address` class. Valid entries will have `ng-valid-ip-address` class.
+Entries breaking one of the validation rules will cause the input to 
+become invalid and gain the `ng-invalid-ip-address` class. Valid entries 
+will have `ng-valid-ip-address` class.
 
-###### Additional Options
+#### Additional Options
 
-*Vanilla version does not include additional options so is a smaller file and may perform faster*
+*Vanilla version does not include additional options.*
 
-Port options are accessed through `ng-ip-config` property. Options default to false and requirePort overrides allowPort.
+Port options are accessed through `ng-ip-config` property.
 
 ```html
 <input ng-model="model" ng-ip-address ng-ip-config="ipConfigObject" />
@@ -70,9 +96,11 @@ $scope.ipConfigObject = {
 };
 ```
 
+Options default to false and setting requirePort to true overrides allowPort.
+
 ### Features
 
-###### Limits User Input
+#### Limits User Input
 
 * Four segments with optional port (ex: 172.16.254.1:24213)
 * Each segment limited to 3 numbers
@@ -80,21 +108,21 @@ $scope.ipConfigObject = {
 * Duplicate periods are removed
 * Characters limited to numbers and period
 
-*with allowPort set to true*
+###### *with allowPort set to true*
 
 * Limited to one colon in the fourth IP segment
 * Port is limited to 5 numbers
 
-###### Validates User Input
+#### Validates User Input
 
 * Each segment must be between 0 and 255
 * Must be 4 segments
 
-*with allowPort set to true*
+###### *with allowPort set to true*
 
 * If port exists, it must be between 1 and 65535
 
-*with requirePort set to true*
+###### *with requirePort set to true*
 
 * Port must be present
 
