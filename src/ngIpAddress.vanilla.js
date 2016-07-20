@@ -21,6 +21,9 @@
 				// Match duplicate period
 				var regexDupePeriods = new RegExp('\\.\\.+', 'g');
 
+				// Initialize caret position tracker
+				var curPos = 0;
+
 				// Attach key evaluator to the element keypress event
 				element.bind('keypress', evalKeyPress);
 
@@ -45,6 +48,9 @@
 						// Return value
 						return val;
 					}
+
+					// Set caret position tracker
+					curPos = element[0].selectionStart;
 
 					// Initialize validation result tracker
 					var validationResult = true;
@@ -105,6 +111,9 @@
 					// Replace the input value with the cleaned value in the view
 					ngModelCtrl.$setViewValue(val);
 					ngModelCtrl.$render();
+
+					// Set the caret position back to where it was prior to re-render
+					element[0].setSelectionRange(curPos, curPos);
 
 					// Return value
 					return val;

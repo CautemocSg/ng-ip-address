@@ -32,6 +32,9 @@
 				// Match leading colon
 				var regexLeadingColon = new RegExp('^:', 'g');
 
+				// Initialize caret position tracker
+				var curPos = 0;
+
 				// Shallow watch the members of the config object and evaluate changes
 				scope.$watchCollection('config', evalConfiguration);
 
@@ -181,6 +184,9 @@
 					// Replace the input value with the cleaned value in the view
 					ngModelCtrl.$setViewValue(val);
 					ngModelCtrl.$render();
+
+					// Set the caret position back to where it was prior to re-render
+					element[0].setSelectionRange(curPos, curPos);
 
 					// Return value
 					return val;
