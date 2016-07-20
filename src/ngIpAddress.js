@@ -86,6 +86,9 @@
 						return val;
 					}
 
+					// Set caret position tracker
+					curPos = element[0].selectionStart;
+
 					// Initialize validation result tracker
 					var validationResult = true;
 
