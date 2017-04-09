@@ -19,6 +19,7 @@
 				// Initialize configuration
 				var allowPort = false;
 				var requirePort = false;
+				var ctrlDown = true ;
 
 				// Initialize regex...
 				// Match leading zero
@@ -40,7 +41,8 @@
 
 				// Attach key evaluator to the element keypress event
 				element.bind('keypress', evalKeyPress);
-
+				// Attach key evaluator to the element keyup event
+				element.bind('keyup', evalKeyUp);
 				// Attach input evaluator to the input model parsers
 				ngModelCtrl.$parsers.push(evalInput);
 
@@ -66,18 +68,38 @@
 					}
 				}
 
+				
+				function evalKeyUp(event){
+					//console.log(event.which);
+					if (event.which == 17) ctrlDown = false;
+				}
+
 				function evalKeyPress(event) {
+					console.log(event.which);
 					// If the character code is not allowed...
-					if ((event.which < 46 && event.which !== 0 && event.which != 8 && event.which != 13)
+					if (event.which == 17 ) {
+						ctrlDown = true;
+					}
+					
+						
+					if (ctrlDown && (event.which == 86 || event.which == 67 || event.which == 118 || event.which == 99))
+					{
+						console.log('doneeeeee');
+					}
+					else if ((event.which < 46 && event.which !== 0 && event.which != 8 && event.which != 37
+						&& event.which != 39 && event.which != 13)
 						|| event.which == 47
 						|| event.which > 58
 						|| (event.which == 58 && !allowPort)) {
 						// Stop key press from propagating
-						event.preventDefault();
-					}
+					event.preventDefault();
 				}
 
-				function evalInput(val) {
+
+				
+			}
+
+			function evalInput(val) {
 					// If val is falsey (undefined, empty string, etc)...
 					if (!val) {
 						// Set the field validity to true since it should be the responsibility of 'required' to stop blank entries
