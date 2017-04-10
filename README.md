@@ -1,7 +1,6 @@
 [![Bower version][bower-image]][github-url]
 [![NPM version][npm-image]][npm-url]
 [![Code Climate][code-climate-image]][code-climate-url]
-[![devDependency Status][david-image]][david-url]
 [![Downloads][downloads-image]][npm-url]
 [![GitHub stars][stars-image]][github-url]
 
@@ -128,6 +127,10 @@ Options default to false and setting requirePort to true overrides allowPort.
 
 ### Planned Releases
 
+###### Version 1.1.12
+
+* Validation of pasted data
+
 ###### Version 1.2.0
 
 * Support for IPv6
@@ -138,8 +141,6 @@ Options default to false and setting requirePort to true overrides allowPort.
 [npm-image]: http://img.shields.io/npm/v/ng-ip-address.svg
 [downloads-image]: http://img.shields.io/npm/dm/ng-ip-address.svg
 [npm-url]: https://npmjs.org/package/ng-ip-address
-[david-image]: https://david-dm.org/CautemocSg/ng-ip-address/dev-status.svg
-[david-url]: https://david-dm.org/CautemocSg/ng-ip-address#info=devDependencies
 [code-climate-image]: https://codeclimate.com/github/CautemocSg/ng-ip-address/badges/gpa.svg
 [code-climate-url]: https://codeclimate.com/github/CautemocSg/ng-ip-address
 
