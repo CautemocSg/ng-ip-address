@@ -24,17 +24,37 @@
 				// Initialize caret position tracker
 				var curPos = 0;
 
+				// Initialize ctrl/cmd tracker
+				var ctrlDown = false;
+
+				// Attach key evaluators to the element keydown and keyup events to check
+				// for when ctrl/cmd is being held down
+				element.bind('keydown', evalIfCtrlDown);
+				element.bind('keyup', evalIfCtrlUp);
+
 				// Attach key evaluator to the element keypress event
 				element.bind('keypress', evalKeyPress);
 
 				// Attach input evaluator to the input model parsers
 				ngModelCtrl.$parsers.push(evalInput);
 
+				function evalIfCtrlDown(event) {
+					if (event.which == 17 || event.which == 91) {
+						ctrlDown = true;
+					}
+				}
+
+				function evalIfCtrlUp(event) {
+					if (event.which == 17 || event.which == 91) {
+						ctrlDown = false;
+					}
+				}
+
 				function evalKeyPress(event) {
 					// If the character code is not allowed...
 					if ((event.which < 46 && event.which !== 0 && event.which != 8 && event.which != 13)
 						|| event.which == 47
-						|| event.which > 57) {
+						|| event.which > 57 && !(ctrlDown && (event.which == 99 || event.which == 118 || event.which == 120))) {
 						// Stop key press from propagating
 						event.preventDefault();
 					}
