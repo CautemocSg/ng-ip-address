@@ -73,6 +73,8 @@ Entries breaking one of the validation rules will cause the input to
 become invalid and gain the `ng-invalid-ip-address` class. Valid entries 
 will have `ng-valid-ip-address` class.
 
+You can also hook to $error with `ipAddress` to utilize ng-messages.
+
 #### Additional Options
 
 *Vanilla version does not include additional options.*
