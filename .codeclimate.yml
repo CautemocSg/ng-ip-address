@@ -5,4 +5,7 @@ engines:
     enabled: false
 ratings:
   paths:
-    - "**/*.js"
+    - "src/ngIpAddress.js"
+    - "src/ngIpAddress.vanilla.js"
+    - "ngIpAddress.min.js"
+    - "ngIpAddress.vanilla.min.js"
