@@ -13,6 +13,9 @@
 					return;
 				}
 
+				// Expose ipaddr.js from the global scope
+				var ipaddr = require('ipaddr.js');
+
 				// Initialize regex...
 				// Match leading zero
 				var regexLeadingZero = new RegExp('^0', 'g');
@@ -72,9 +75,6 @@
 					// Set caret position tracker
 					curPos = element[0].selectionStart;
 
-					// Initialize validation result tracker
-					var validationResult = true;
-
 					// Remove leading period
 					val = val.replace(regexLeadingPeriod, '');
 
@@ -86,13 +86,8 @@
 					// Eval length to be used later
 					var valArrayLength = valArray.length;
 
-					// If there are less than four IP segments...
-					if (valArrayLength < 4) {
-						// Set validity tracker to false
-						validationResult = false;
-					}
-					// Otherwise, if there are more than four IP segments...
-					else if (valArrayLength > 4) {
+					// If there are more than four IP segments...
+					if (valArrayLength > 4) {
 						// Enforce 4 segment limit
 						valArray.length = 4;
 						// Update array length
@@ -107,16 +102,6 @@
 						if (arrayVal.length > 1) {
 							// Delete leading zeroes and any number after the third
 							arrayVal = arrayVal.replace(regexLeadingZero, '').substring(0, 3);
-							// If the value is greater than 255...
-							if (arrayVal > 255) {
-								// Set validity tracker to false
-								validationResult = false;
-							}
-						}
-						// Otherwise, check if the value is empty...
-						else if (!arrayVal) {
-							// Set validity tracker to false
-							validationResult = false;
 						}
 						// Set the final value back to the segment
 						valArray[i] = arrayVal;
@@ -126,7 +111,7 @@
 					val = valArray.join('.');
 
 					// Set validity of field (will be displayed as class 'ng-valid-ip-address' or 'ng-invalid-ip-address')
-					ngModelCtrl.$setValidity('ipAddress', validationResult);
+					ngModelCtrl.$setValidity('ipAddress', ipaddr.isValid(val));
 
 					// Replace the input value with the cleaned value in the view
 					ngModelCtrl.$setViewValue(val);
