@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body ng-app="demoApp">
+<h1>ng-ip-address demo</h1>
+<div>
+	<form name="demoForm" ng-controller="DemoAppController">
+		<fieldset>
+			<legend>No Options</legend>
+			<br/>
+			<label>IP Address</label>
+			<input type="text" name="demoInput1" ng-model="ipAddress1" ng-ip-address/>
+			<span ng-if="demoForm.demoInput1.$invalid">Invalid</span>
+			<span ng-if="demoForm.demoInput1.$dirty && demoForm.demoInput1.$valid">Valid</span>
+		</fieldset>
+		<br/>
+		<fieldset>
+			<legend>Port Options</legend>
+			<br/>
+			<label>Optional Port</label>
+			<input type="text" name="demoInput2" ng-model="ipAddress2" ng-ip-address ng-ip-config="allowPort"/>
+			<span ng-if="demoForm.demoInput2.$invalid">Invalid</span>
+			<span ng-if="demoForm.demoInput2.$dirty && demoForm.demoInput2.$valid">Valid</span>
+			<br/><br/>
+			<label>Required Port</label>
+			<input type="text" name="demoInput3" ng-model="ipAddress3" ng-ip-address ng-ip-config="requirePort"/>
+			<span ng-if="demoForm.demoInput3.$invalid">Invalid</span>
+			<span ng-if="demoForm.demoInput3.$dirty && demoForm.demoInput3.$valid">Valid</span>
+		</fieldset>
+		<br/>
+		<fieldset>
+			<legend>Dynamic Port Configuration</legend>
+			<br/>
+			<label>IP Address</label>
+			<input type="text" name="demoInput4" ng-model="ipAddress4" ng-ip-address ng-ip-config="portConfig"/>
+			<span ng-if="demoForm.demoInput4.$invalid">Invalid</span>
+			<span ng-if="demoForm.demoInput4.$dirty && demoForm.demoInput4.$valid">Valid</span>
+			<br/><br/>
+			<input type="checkbox" ng-model="portConfig.allowPort"/>Allow Port
+			<br/>
+			<input type="checkbox" ng-model="portConfig.requirePort"/>Require Port
+		</fieldset>
+	</form>
+	<p>Links:</p>
+	<ul>
+		<li><a href="https://github.com/CautemocSg/ng-ip-address">GitHub Project Homepage</a></li>
+	</ul>
+</div>
+<!-- inject:js -->
+<!-- endinject -->
+</body>
+
+</html>

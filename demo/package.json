@@ -1,0 +1,15 @@
+{
+	"name": "Demo",
+	"description": "Demo for ng-ip-address",
+	"dependencies": {
+		"gulp": ">=3.9.1",
+		"gulp-inject": ">=4.2.0",
+		"gulp-rimraf": ">=0.2.0",
+		"gulp-connect": ">=5.0.0",
+		"run-sequence": ">=1.2.1",
+		"connect-modrewrite": ">=0.10.1",
+		"merge-stream": ">=1.0.0",
+		"event-stream": ">=3.3.2"
+	},
+	"private": true
+}
