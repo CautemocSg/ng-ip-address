@@ -1,35 +1,36 @@
 {
-	"name": "ng-ip-address",
-	"version": "1.1.11",
-	"description": "AngularJS directive that will validate an IP address and impose relevant character and structure limits",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/CautemocSg/ng-ip-address.git"
-	},
-	"bugs": {
-		"url": "https://github.com/CautemocSg/ng-ip-address/issues"
-	},
-	"main": "index.js",
-	"author": "Scott Gullen",
-	"keywords": [
-		"angular",
-		"angularjs",
-		"directive",
-		"ip address",
-		"form",
-		"input",
-		"validation"
-	],
-	"license": "MIT",
-	"scripts": {
-		"gulp": "gulp"
-	},
-	"dependencies": {
-		"ipaddr.js": "latest"
-	},
-	"devDependencies": {
-		"gulp": "latest",
-		"gulp-rename": "latest",
-		"gulp-uglify": "latest"
-	}
+  "name": "ng-ip-address",
+  "version": "1.1.11",
+  "description": "AngularJS directive that will validate an IP address and impose relevant character and structure limits",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CautemocSg/ng-ip-address.git"
+  },
+  "keywords": [
+    "angular",
+    "angularjs",
+    "directive",
+    "ip address",
+    "form",
+    "input",
+    "validation"
+  ],
+  "main": "index.js",
+  "license": "MIT",
+  "author": "Scott Gullen",
+  "bugs": {
+    "url": "https://github.com/CautemocSg/ng-ip-address/issues"
+  },
+  "scripts": {
+    "gulp": "gulp"
+  },
+  "dependencies": {
+    "angular": ">=1.4.0",
+    "ipaddr.js": ">=1.4.0"
+  },
+  "devDependencies": {
+    "gulp": ">=3.9.1",
+    "gulp-rename": ">=1.2.2",
+    "gulp-uglify": ">=3.0.0"
+  }
 }
