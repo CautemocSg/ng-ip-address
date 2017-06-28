@@ -27,10 +27,10 @@
 	],
 	"ignore": [
 		"node_modules",
+		"bower_components",
 		".idea"
 	],
 	"dependencies": {
-		"angular": ">=1.4.0",
-		"ipaddr.js": ">=1.4.0"
+		"angular": ">=1.4.0"
 	}
 }
