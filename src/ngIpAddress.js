@@ -75,23 +75,23 @@
 				}
 
 				function evalIfCtrlDown(event) {
-					if (event.which == 17 || event.which == 91) {
+					if (event.which === 17 || event.which === 91) {
 						ctrlDown = true;
 					}
 				}
 
 				function evalIfCtrlUp(event) {
-					if (event.which == 17 || event.which == 91) {
+					if (event.which === 17 || event.which === 91) {
 						ctrlDown = false;
 					}
 				}
 
 				function evalKeyPress(event) {
 					// If the character code is not allowed...
-					if ((event.which < 46 && event.which !== 0 && event.which != 8 && event.which != 13)
-						|| event.which == 47
-						|| (event.which == 58 && !allowPort)
-						|| event.which > 58 && !(ctrlDown && (event.which == 99 || event.which == 118 || event.which == 120))) {
+					if ((event.which < 46 && event.which !== 0 && event.which !== 8 && event.which !== 13)
+						|| event.which === 47
+						|| (event.which === 58 && !allowPort)
+						|| event.which > 58 && !(ctrlDown && (event.which === 99 || event.which === 118 || event.which === 120))) {
 						// Stop key press from propagating
 						event.preventDefault();
 					}
@@ -153,7 +153,7 @@
 								// Delete colon if it is leading (ex. 1.1.1.:)
 								arrayVal = arrayVal.replace(regexLeadingColon, '');
 								// If there is a port...
-								if (arrayVal.indexOf(':') != -1) {
+								if (arrayVal.indexOf(':') !== -1) {
 									// Break the segment into ip segment and ports
 									var segmentArray = arrayVal.split(':');
 									// Set the ip segment

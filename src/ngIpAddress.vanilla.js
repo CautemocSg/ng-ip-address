@@ -42,22 +42,22 @@
 				ngModelCtrl.$parsers.push(evalInput);
 
 				function evalIfCtrlDown(event) {
-					if (event.which == 17 || event.which == 91) {
+					if (event.which === 17 || event.which === 91) {
 						ctrlDown = true;
 					}
 				}
 
 				function evalIfCtrlUp(event) {
-					if (event.which == 17 || event.which == 91) {
+					if (event.which === 17 || event.which === 91) {
 						ctrlDown = false;
 					}
 				}
 
 				function evalKeyPress(event) {
 					// If the character code is not allowed...
-					if ((event.which < 46 && event.which !== 0 && event.which != 8 && event.which != 13)
-						|| event.which == 47
-						|| event.which > 57 && !(ctrlDown && (event.which == 99 || event.which == 118 || event.which == 120))) {
+					if ((event.which < 46 && event.which !== 0 && event.which !== 8 && event.which !== 13)
+						|| event.which === 47
+						|| event.which > 57 && !(ctrlDown && (event.which === 99 || event.which === 118 || event.which === 120))) {
 						// Stop key press from propagating
 						event.preventDefault();
 					}
