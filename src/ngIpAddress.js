@@ -75,13 +75,17 @@
 				}
 
 				function evalIfCtrlDown(event) {
+					// If the character code represents ctrl/cmd...
 					if (event.which === 17 || event.which === 91) {
+						// Toggle the tracker
 						ctrlDown = true;
 					}
 				}
 
 				function evalIfCtrlUp(event) {
+					// If the character code represents ctrl/cmd...
 					if (event.which === 17 || event.which === 91) {
+						// Toggle the tracker
 						ctrlDown = false;
 					}
 				}
@@ -160,8 +164,8 @@
 									arrayVal = segmentArray[0];
 									// Set the port, delete leading zeroes and remove any number after the fifth
 									port = segmentArray[1].replace(regexLeadingZero, '').substring(0, 5);
-									// If the port is empty or the value is greater than max
-									if (!port || port > 65535) {
+									// If the port is empty, isn't a number, or the value is greater than max
+									if (!port || !isNumeric(arrayVal) || port > 65535) {
 										// Set validity tracker to false
 										validationResult = false;
 									}
@@ -177,8 +181,8 @@
 						if (arrayVal.length > 1) {
 							// Delete leading zeroes and any number after the third
 							arrayVal = arrayVal.replace(regexLeadingZero, '').substring(0, 3);
-							// If the value is greater than 255...
-							if (arrayVal > 255) {
+							// If the value isn't a number or is greater than 255...
+							if (!isNumeric(arrayVal) || arrayVal > 255) {
 								// Set validity tracker to false
 								validationResult = false;
 							}
@@ -215,6 +219,10 @@
 					return val;
 				}
 
+				// Determines if a passed value is numeric
+				function isNumeric(n) {
+					return !isNaN(parseFloat(n)) && isFinite(n);
+				}
 			}
 		};
 	}
