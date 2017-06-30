@@ -1,8 +1,11 @@
 language: node_js
 node_js:
-  - "node"
+  - "0.10"
 before_script:
   - npm install -g bower
-  - bower install
   - npm install -g gulp-cli
+  - npm install phantomjs
+  - npm install -g karma
+  - bower install
+  - gulp default
 script: gulp test

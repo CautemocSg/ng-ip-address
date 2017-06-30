@@ -22,7 +22,8 @@
     "url": "https://github.com/CautemocSg/ng-ip-address/issues"
   },
   "scripts": {
-    "build": "gulp default"
+    "build": "gulp default",
+	  "test": "gulp test"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
@@ -31,6 +32,7 @@
     "karma": "^1.7.0",
 	  "jasmine-core": "^2.6.4",
     "karma-jasmine": "^1.1.0",
-    "karma-chrome-launcher": "^2.2.0"
+    "karma-chrome-launcher": "^2.2.0",
+	  "karma-phantomjs-launcher": "^1.0.4"
   }
 }
