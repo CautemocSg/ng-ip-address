@@ -11,14 +11,13 @@ module.exports = function(config) {
 		],
 		plugins : [
 			'karma-jasmine',
-			'karma-chrome-launcher',
 			'karma-phantomjs-launcher'
 		],
 		port: 9876,
 		colors: true,
 		logLevel: config.LOG_DISABLE,
 		autoWatch: false,
-		browsers: ['Chrome', 'PhantomJS'],
+		browsers: ['PhantomJS'],
 		singleRun: true
 	});
 };
