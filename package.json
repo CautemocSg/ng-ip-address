@@ -22,11 +22,14 @@
     "url": "https://github.com/CautemocSg/ng-ip-address/issues"
   },
   "scripts": {
-    "gulp": "gulp"
+    "build": "gulp default"
   },
   "devDependencies": {
-    "gulp": ">=3.9.1",
-    "gulp-rename": ">=1.2.2",
-    "gulp-uglify": ">=3.0.0"
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0",
+    "karma": "^1.7.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-chrome-launcher": "^2.2.0"
   }
 }
