@@ -1,5 +1,4 @@
-[![Bower version][bower-image]][github-url]
-[![NPM version][npm-image]][npm-url]
+[![Build Status][build-status-image]][build-status-url]
 [![Code Climate][code-climate-image]][code-climate-url]
 [![Downloads][downloads-image]][npm-url]
 [![GitHub stars][stars-image]][github-url]
@@ -40,13 +39,13 @@ smaller file and has lower compatibility requirements.
 
 ### Install
 
-It is available through NPM:
+It is available through NPM [![NPM version][npm-image]][npm-url]
 
 ```text
 npm install ng-ip-address
 ```
 
-Or, via bower:
+Or, via bower [![Bower version][bower-image]][github-url]
 
 ```text
 bower install ng-ip-address --save
@@ -73,7 +72,7 @@ Entries breaking one of the validation rules will cause the input to
 become invalid and gain the `ng-invalid-ip-address` class. Valid entries 
 will have `ng-valid-ip-address` class.
 
-You can also hook to $error with `ipAddress` to utilize ng-messages.
+You can also hook to `$error` with "ipAddress", ex: `form.ipAddressInput.$error.ipAddress`.
 
 #### Additional Options
 
@@ -127,14 +126,9 @@ Options default to false and setting requirePort to true overrides allowPort.
 
 * Port must be present
 
-### Planned Releases
-
-###### Version 1.1.12
+### Planned Features
 
 * Validation of pasted data
-
-###### Version 1.2.0
-
 * Support for IPv6
 
 [bower-image]: https://img.shields.io/bower/v/ng-ip-address.svg
@@ -145,6 +139,8 @@ Options default to false and setting requirePort to true overrides allowPort.
 [npm-url]: https://npmjs.org/package/ng-ip-address
 [code-climate-image]: https://codeclimate.com/github/CautemocSg/ng-ip-address/badges/gpa.svg
 [code-climate-url]: https://codeclimate.com/github/CautemocSg/ng-ip-address
+[build-status-image]: https://travis-ci.org/CautemocSg/ng-ip-address.svg?branch=master
+[build-status-url]: https://travis-ci.org/CautemocSg/ng-ip-address
 
 [plnkr-url]: http://plnkr.co/edit/7n2muGs78kXqIx7MHB7E?p=preview
 [codepen-url]: http://codepen.io/CautemocSg/pen/Wxrywm
