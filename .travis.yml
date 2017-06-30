@@ -1,14 +1,10 @@
-sudo: false
 language: node_js
 node_js:
   - "node"
-before_install:
+before_script:
+  - npm install -g gulp-cli
   - npm install -g bower
-  - bower install -g jQuery
-  - bower install -g angular
-  - bower install -g angular-mocks
+  - bower install
 script:
   - gulp test
-group: stable
-dist: precise
 os: linux
