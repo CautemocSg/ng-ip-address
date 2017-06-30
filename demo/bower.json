@@ -1,6 +1,6 @@
 {
-	"name": "Demo",
-	"description": "Demo for ng-ip-address",
+	"name": "ngIpAddress Demo",
+	"description": "Demo for ng-ip-address directive",
 	"ignore": [
 		"bower_components",
 		"build",
