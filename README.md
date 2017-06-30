@@ -1,4 +1,3 @@
-[![Build Status][build-status-image]][build-status-url]
 [![Code Climate][code-climate-image]][code-climate-url]
 [![Downloads][downloads-image]][npm-url]
 [![GitHub stars][stars-image]][github-url]
@@ -39,13 +38,13 @@ smaller file and has lower compatibility requirements.
 
 ### Install
 
-It is available through NPM [![NPM version][npm-image]][npm-url]
+[![NPM version][npm-image]][npm-url]
 
 ```text
 npm install ng-ip-address
 ```
 
-Or, via bower [![Bower version][bower-image]][github-url]
+[![Bower version][bower-image]][github-url]
 
 ```text
 bower install ng-ip-address --save
