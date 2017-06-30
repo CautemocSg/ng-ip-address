@@ -14,12 +14,11 @@ module.exports = function(config) {
 			'karma-chrome-launcher',
 			'karma-phantomjs-launcher'
 		],
-		reporters: ['progress'],
-		port: 8080,
+		port: 9876,
 		colors: true,
 		logLevel: config.LOG_DISABLE,
 		autoWatch: false,
-		browsers: ['Chrome'],
+		browsers: ['Chrome', 'PhantomJS'],
 		singleRun: true
 	});
 };
