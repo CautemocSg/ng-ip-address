@@ -29,6 +29,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^3.0.0",
     "karma": "^1.7.0",
+	  "jasmine-core": "^2.6.4",
     "karma-jasmine": "^1.1.0",
     "karma-chrome-launcher": "^2.2.0"
   }
