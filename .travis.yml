@@ -4,7 +4,9 @@ node_js:
   - "node"
 before_install:
   - npm install -g bower
-  - bower install --force
+  - bower install -g jQuery
+  - bower install -g angular
+  - bower install -g angular-mocks
 script:
   - gulp test
 group: stable

@@ -60,7 +60,7 @@ describe('ng-ip-address', function () {
 	}
 
 	function clearInput() {
-		// angular.element(directiveInput).val('').trigger('input');
+		angular.element(directiveInput).val('').trigger('input');
 	}
 
 	function isInputValid() {
