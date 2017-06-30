@@ -3,8 +3,7 @@ language: node_js
 node_js:
   - "node"
 before_install:
-  - npm install -qg bower gulp-cli
-  - npm install -q
+  - npm install -g bower
   - bower install --force
 script:
   - gulp test
