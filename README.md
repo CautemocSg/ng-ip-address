@@ -1,6 +1,4 @@
-[![Code Climate][code-climate-image]][code-climate-url]
 [![Downloads][downloads-image]][npm-url]
-[![GitHub stars][stars-image]][github-url]
 
 # ng-ip-address
 
@@ -125,19 +123,11 @@ Options default to false and setting requirePort to true overrides allowPort.
 
 * Port must be present
 
-### Planned Features
-
-* Validation of pasted data
-* Support for IPv6
-
 [bower-image]: https://img.shields.io/bower/v/ng-ip-address.svg
-[stars-image]: https://img.shields.io/github/stars/CautemocSg/ng-ip-address.svg?style=social
 [github-url]: https://github.com/CautemocSg/ng-ip-address/stargazers
 [npm-image]: http://img.shields.io/npm/v/ng-ip-address.svg
 [downloads-image]: http://img.shields.io/npm/dm/ng-ip-address.svg
 [npm-url]: https://npmjs.org/package/ng-ip-address
-[code-climate-image]: https://codeclimate.com/github/CautemocSg/ng-ip-address/badges/gpa.svg
-[code-climate-url]: https://codeclimate.com/github/CautemocSg/ng-ip-address
 [build-status-image]: https://travis-ci.org/CautemocSg/ng-ip-address.svg?branch=master
 [build-status-url]: https://travis-ci.org/CautemocSg/ng-ip-address
 

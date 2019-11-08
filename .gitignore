@@ -4,3 +4,4 @@ demo/node_modules/
 demo/bower_components/
 demo/build/
 .idea/
+package-lock.json
