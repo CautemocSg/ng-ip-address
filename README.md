@@ -124,12 +124,10 @@ Options default to false and setting requirePort to true overrides allowPort.
 * Port must be present
 
 [bower-image]: https://img.shields.io/bower/v/ng-ip-address.svg
-[github-url]: https://github.com/CautemocSg/ng-ip-address/stargazers
+[github-url]: https://github.com/CautemocSg/ng-ip-address
 [npm-image]: http://img.shields.io/npm/v/ng-ip-address.svg
 [downloads-image]: http://img.shields.io/npm/dm/ng-ip-address.svg
 [npm-url]: https://npmjs.org/package/ng-ip-address
-[build-status-image]: https://travis-ci.org/CautemocSg/ng-ip-address.svg?branch=master
-[build-status-url]: https://travis-ci.org/CautemocSg/ng-ip-address
 
 [plnkr-url]: http://plnkr.co/edit/7n2muGs78kXqIx7MHB7E?p=preview
 [codepen-url]: http://codepen.io/CautemocSg/pen/Wxrywm
