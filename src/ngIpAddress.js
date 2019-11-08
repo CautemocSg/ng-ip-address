@@ -110,6 +110,8 @@
 						return val;
 					}
 
+					var newVal = val;
+
 					// Set caret position tracker
 					curPos = element[0].selectionStart;
 
@@ -120,13 +122,13 @@
 					var port = null;
 
 					// Remove leading period
-					val = val.replace(regexLeadingPeriod, '');
+					newVal = newVal.replace(regexLeadingPeriod, '');
 
 					// Remove any duplicate periods
-					val = val.replace(regexDupePeriods, '.');
+					newVal = newVal.replace(regexDupePeriods, '.');
 
 					// Break the IP address into segments
-					var valArray = val.split('.');
+					var valArray = newVal.split('.');
 					// Eval length to be used later
 					var valArrayLength = valArray.length;
 
@@ -197,23 +199,28 @@
 					}
 
 					// Reassemble the segments
-					val = valArray.join('.');
+					newVal = valArray.join('.');
 
 					// If the port is not null...
 					if (port !== null) {
 						// Attach it to the final value
-						val += ':' + port
+						newVal += ':' + port
 					}
 
 					// Set validity of field (will be displayed as class 'ng-valid-ip-address' or 'ng-invalid-ip-address')
 					ngModelCtrl.$setValidity('ipAddress', validationResult);
 
-					// Replace the input value with the cleaned value in the view
-					ngModelCtrl.$setViewValue(val);
-					ngModelCtrl.$render();
+					// Update the view if the new values differs from the entered value
+					if (newVal !== val) {
+						ngModelCtrl.$setViewValue(newVal);
+						ngModelCtrl.$render();
 
-					// Set the caret position back to where it was prior to re-render
-					element[0].setSelectionRange(curPos, curPos);
+						// Set the caret position back to where it was prior to re-render
+						element[0].setSelectionRange(curPos, curPos);
+
+						// Return new value
+						return newVal;
+					}
 
 					// Return value
 					return val;

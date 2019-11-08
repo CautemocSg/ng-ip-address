@@ -1,6 +1,6 @@
 {
   "name": "ng-ip-address",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "description": "AngularJS directive that will validate an IP address and impose relevant character and structure limits",
   "repository": {
     "type": "git",
@@ -23,16 +23,16 @@
   },
   "scripts": {
     "build": "gulp default",
-	  "test": "gulp test"
+    "test": "gulp test"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^3.0.0",
     "karma": "^1.7.0",
-	  "jasmine-core": "^2.6.4",
+    "jasmine-core": "^2.6.4",
     "karma-jasmine": "^1.1.0",
-	  "phantomjs-prebuilt": "^2.1.14",
-	  "karma-phantomjs-launcher": "^1.0.4"
+    "phantomjs-prebuilt": "^2.1.14",
+    "karma-phantomjs-launcher": "^1.0.4"
   }
 }
